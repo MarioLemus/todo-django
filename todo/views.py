@@ -7,6 +7,7 @@ from .models import Todo
 from .forms import TodoForm, CheckboxForm
 import json
 
+
 @csrf_protect
 def set_todo_info(req):
     form = TodoForm(req.POST)
@@ -17,7 +18,6 @@ def set_todo_info(req):
         'checkbox': checkbox,
         'todos': todos
     }
-
 
     if req.method == 'POST':
         title = req.POST['title']
