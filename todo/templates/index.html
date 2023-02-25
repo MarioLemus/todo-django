@@ -1,0 +1,30 @@
+{% extends 'layouts/nav.html' %}
+
+{% block content %}
+
+<section class="form-container">
+    <form action="/" method="post" class="todo-form">
+        {% csrf_token %} 
+        {{ form }}
+        <button type="submit">send</button>
+    </form>
+</section>
+
+<section class="todos-grid">
+    {% for todo in todos %}
+    
+    <article class="todo-card">
+        <h3>{{ todo.title }}</h3>
+        <p>{{ todo.description }}</p>
+        <p>{{ todo.isDone }}</p>
+        <form action="/update-todo-status/{{ todo.id }}" method="post">
+            {% csrf_token %} 
+            {{ checkbox }}
+            <button type="submit">send</button>
+        </form>
+    </article>
+    
+    {% endfor %}
+</section>
+
+{% endblock %}
